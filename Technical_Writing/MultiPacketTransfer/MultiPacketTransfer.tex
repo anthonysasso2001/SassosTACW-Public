@@ -1,0 +1,60 @@
+\documentclass{article}
+
+%   included packages
+\usepackage[a4paper,margin = 14mm]{geometry} %0.5 inch margins a4 paper
+\usepackage{amsmath}
+\usepackage{newpxtext,newpxmath}
+\usepackage{microtype}
+\usepackage{titling}
+
+%formatting for document
+\preauthor{\begin{flushleft}}
+\postauthor{\end{flushleft}}
+\predate{\begin{flushleft}}
+\postdate{\end{flushleft}}
+\setcounter{secnumdepth}{0}
+\title{\Huge Multi-Packet Transfer Visualization}
+\author{By: Anthony Sasso}
+\date{\today}
+
+\setlength{\parindent}{0pt}%no indents for paragraphs
+\newcommand{\textbfit}[1]{\textbf{\textit{#1}}} %combine bold & italic
+\begin{document}
+    
+    \maketitle
+
+    \tableofcontents
+
+    \newpage
+    \section*{Example Scenario / Setup}
+
+    We Are sending a 60 GB (60 Billion Byte) transfer ``\textbfit{T}'', using TCP/UDP or a similar method, where there is a max standard transfer of around 500 Bytes (0.005 MB). We will also say our implementation only sends packets of around 110 Bytes (0.001 MB) for reliability reasons. This then means we will need to send around \( 6.e+10 / 110 = 545 454 546\) or ``\textbfit{P}'' Packets…
+
+    \bigskip
+    How can we do this while having the ``fastest, most reasonable methodology of data networking''. I will list the way I have observed it probably works (no guarantee on accuracy).
+
+    \section{Segmentation}
+
+    First we will (while serializing the data) segment it into 100 packet chunks or ``\textbfit{C}'', meaning there will be \(P \div C \text{ chunks} = 5 454 546\) chunks.
+
+    \bigskip
+    Then, now that we can send somewhat more reasonably sized data we will send chunk by chunk for data consistency. This is to allow the user in the case where internet connections are unreliable to receive data but upon the connection terminating only revert to the previous chunk, not losing the entirety of their progress (as seen in clients like qBittorent).
+
+    \section{Visualization}
+    \begin{align}
+        T &= t&&\text{t = size of total packet in Bytes}\\
+        P &= T \div p&&\text{p = size of each packet in Bytes (also referred to as segments)}\\
+        C &= P \div c&&\text{c = number of packets in a chunk.}
+    \end{align}
+
+    \newpage
+    \section{Leading \& Trailing Chunks}
+
+    Now that we have chunks to send we will send the leading ``\textbfit{L}'' chunks and final ``\textbfit{F}'' chunks first. After this ``\textbfit{L}'' being the amount of chunks representative of the program header (program size, chunk size, etc) and metadata. Then finally \textbfit{F} being the amount of chunks representative of the program tail and metadata (leading non-standard sized chunk, and CRC of the entire deserialized program).
+
+    \bigskip
+    This allows the client to begin saving data into storage / organizing more accurately, and you can think of it like a program level control packet. This will necessarily be sent ahead of time to also allow the random ordering of data between these bounds easier since they are all of a known size (the only non-standard sized chunk being the final one…).
+
+    \section{Visualization}
+
+\end{document}

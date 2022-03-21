@@ -1,0 +1,94 @@
+\documentclass{article}
+
+%   included packages
+\usepackage[a4paper,margin = 14mm]{geometry} %0.5 inch margins a4 paper
+\usepackage{amsmath}
+\usepackage{newpxtext,newpxmath}
+\usepackage{microtype}
+\usepackage{titling}
+
+%   version history (should be used in conjunction with git)
+\usepackage{vhistory}
+
+%   Allows me to use hyperlinks for table of contents etc.
+\usepackage{hyperref}
+\usepackage{xcolor}
+\hypersetup{
+    linktoc     =   all,
+    colorlinks,
+    citecolor   =   black,
+    filecolor   =   black,
+    linkcolor   =   black,
+    urlcolor    =   blue
+}
+
+%   Setting up the code examples
+% \usepackage{listings}
+
+
+% \definecolor  {dkgreen}   {rgb}   {0,0.6,0}
+% \definecolor  {gray}      {rgb}   {0.5,0.5,0.5}
+% \definecolor  {mauve}     {rgb}   {0.58,0,0.82}
+
+% \lstset{
+%   frame               =   tb,
+%   language            =   C++,
+%   aboveskip           =   3mm,
+%   belowskip           =   3mm,
+%   showstringspaces    =   false,
+%   columns             =   flexible,
+%   basicstyle          =   {\small\ttfamily},
+%   numbers             =   none,
+%   numberstyle         =   \tiny\color{gray},
+%   keywordstyle        =   \color{blue},
+%   commentstyle        =   \color{dkgreen},
+%   stringstyle         =   \color{mauve},
+%   breaklines          =   true,
+%   breakatwhitespace   =   true,
+%   tabsize             =   3
+% }
+
+%   formatting for document
+
+%   Push everything to the left cause I think it looks cleaner
+\preauthor  {\begin{flushleft}}
+\postauthor {\end{flushleft}}
+\predate    {\begin{flushleft}}
+\postdate   {\end{flushleft}}    
+\setcounter {secnumdepth}{0}
+
+%   Document Title & author
+\title      {\Huge TITLE}
+\author     {By: Anthony Sasso}
+
+%   updates date for each compile, that way this + versioning tells reader which they are reading?
+\date       {\today}
+
+%   no indents for paragraphs (change depending on doc type)
+\setlength  {\parindent}    {0pt}
+
+%   custom commands / formatting shortcuts
+%   combine bold & italic
+\newcommand{\textbfit}[1]{\textbf{\textit{#1}}} 
+
+%   footnote with label, colour, and inputted text... then sets back to default
+\newcommand{\clfootnote}[3]{\color{#2}{\footnote{\label{#1}{ \color{#2}{#3}}}}\color{defaultcolor}} 
+
+%   set to defualt colour (black)
+\AtBeginDocument    {\colorlet{defaultcolor}{.}}
+
+%   writing goes here
+\begin{document}
+
+    \maketitle
+
+    \begin{versionhistory}
+        \vhEntry{0}{YYYY/MM/DD}{Anthony Sasso}{created}
+    \end{versionhistory}
+
+    \tableofcontents
+
+    \newpage
+    \section{Introduction / Concept}
+
+\end{document}

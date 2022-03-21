@@ -1,3 +1,7 @@
+#######################
+# Tex / LaTex Ignores #
+#######################
+
 ## Core latex/pdflatex auxiliary files:
 *.aux
 *.lof
@@ -274,3 +278,15 @@ TSWLatexianTemp*
 
 # Makeindex log files
 *.lpz
+
+###################
+# VS Code Ignores #
+###################
+
+# Ignore .code-workspaces 
+# (as purported in: https://github.com/flutter/flutter/issues/15555#issuecomment-373308528)
+*.code-workspace
+.vscode/*
+
+# keep all the latex formatting & spelling stuff so others using latex on vscode don't have to spend too long pressing ctrl+.
+!.vscode/ltex.*

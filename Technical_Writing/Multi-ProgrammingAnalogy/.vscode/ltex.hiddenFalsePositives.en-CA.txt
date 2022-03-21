@@ -1,0 +1,1 @@
+{"rule":"MORFOLOGIK_RULE_EN_CA","sentence":"^\\Q1.5 2022/03/21 Anthony Sasso converted to .tex from .rtf, changed formatting but no core text altered yet 1 2021/02/25 Anthony Sasso original rtf this is from lists last modification at this time (not technically possible but didn't use version history originally…) 0.5 2021/09/30 Anthony Sasso created\\E$"}
