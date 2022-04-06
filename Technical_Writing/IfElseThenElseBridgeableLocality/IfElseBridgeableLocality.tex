@@ -70,6 +70,7 @@
     \maketitle
 
     \begin{versionhistory}
+        \vhEntry    {1.7.1} {2022/04/06}    {Anthony Sasso} {fixed some formatting, no information altered.}
         \vhEntry    {1.7}   {2022/03/21}    {Anthony Sasso} {mainly just updated formatting, to make it fit better\dots}
         \vhEntry    {1.5}   {22/03/18}      {Anthony Sasso} {depreciated sub-functions, added lambda \& function pointer sections, since sub-functions are no longer applicable with knowledge on these solutions\dots}
         \vhEntry    {1}     {22/03/17}      {Anthony Sasso} {added most of the code snippets, most of the writing as well}
@@ -83,7 +84,7 @@
         The initial concept is that by having an if-else with duplicated functionalities we sometimes have to ``break'' the if-else into separate sections having an if-else \dots some combined / shared code \dots another if-else to continue the branching conditions.
 
     \bigskip
-        I think that this is an issue due to the variables local to the initial if-else now needing to become (albeit still localized), higher in view and defined before in a parent function \clfootnote{IntroClarificationNote}{blue}{which may not be wanted \& can cause issues as shown in the listed examples}.
+        I think that this is an issue due to the variables local to the initial if-else now needing to become (albeit still localized), higher in view and defined before in a parent function\clfootnote{IntroClarificationNote}{blue}{which may not be wanted \& can cause issues as shown in the listed examples}.
 
     \section{First General Case}
     \begin{lstlisting}
@@ -164,9 +165,12 @@
         Essentially we define a cache for if statements where they are intended to bridge, then the compiler goes through merging them into a final ``master'' if-else so that we don't need to actively repeat code. Some explicit requirements will be:
 
     \begin{enumerate}
-        \item The initial \textbfit{``if''} must have a CASE macro if one or more others do \clfootnote{InitalProblemNote}{blue}{in the instance there is only one macro it would be recommended to make said initial if, with all subsequent being non-macro types}
-        \item The final \textbfit{``else''} must not have a case macro, this is to account for non-case outputs if only the first has a macro specification\dots
+        \item The initial \textbfit{``if''} must have a CASE macro if one or more others do\clfootnote{InitalProblemNote}{blue}{in the instance there is only one macro it would be recommended to make said initial if, with all subsequent being non-macro types}.
+
+        \item The final \textbfit{``else''} must not have a case macro, this is to account for non-case outputs if only the first has a macro specification\dots.
+
         \item Any options that meet the ``macro-level'' of another option will be put together into the final master-case. But given a nested if statement to differentiate (this is due to them sharing a locality level, while still having different case calls / parameters).
+        
         \item This should be done through an if-else style syntax, but (as discussed later) could also be done through localized ``sub-functions'' that are completely dependent to their defined function and cannot be defined elsewhere.
     \end{enumerate}
 
@@ -176,7 +180,7 @@
         In this scenario the easiest solution would be for the compiler to allocate n buffers upon the realization of the if(): \textbfit{MACRO} \{ \} \dots ELSE\{ \} definition. This should work for n cases where n is the number of if, else, and if else statements with macros. \clfootnote{MacroANMacroLabelNote}{blue}{Statements with macro labels will be considered \textbfit{MACRO\_NAME} where \_NAME is the label and cases without macros will be assumed to ignore the if switch and will be considered \textbfit{NON\_MACRO} for the following definition.}
     
     \bigskip
-        First the compiler will select the leading \textbfit{MACRO} case and allocate it to a \textbfit{MACRO\_NAME} buffer. The pre-compiler will put a reference to that section in the codebase in order to return after allocation and skip over the if clauses until it exits, copying between the end of the if clause and the first then clause \clfootnote{CompilerErrorNote}{red}{Requires a second then with the equivalent MACRO name, otherwise if there is no macro thereby fulfilling that clause it will throw a pre-compiler error due to no existing then closing case}. The pre-compiler will then allocate the ``in-between'' area to a buffer labelled either \textbfit{BETWEEN} or \textbfit{INTER\_CASE} \clfootnote{BetweenAndInterCaseNote}{blue}{We will use the term \textbfit{BETWEEN} for the purposes of this document, to not become too verbose\dots}, appending the data inside the previous macro. The pre-compiler will then append the ``then'' clause with the same \textbfit{MACRO}.
+        First the compiler will select the leading \textbfit{MACRO} case and allocate it to a \textbfit{MACRO\_NAME} buffer. The pre-compiler will put a reference to that section in the codebase in order to return after allocation and skip over the if clauses until it exits, copying between the end of the if clause and the first then clause\clfootnote{CompilerErrorNote}{red}{Requires a second then with the equivalent MACRO name, otherwise if there is no macro thereby fulfilling that clause it will throw a pre-compiler error due to no existing then closing case}. The pre-compiler will then allocate the ``in-between'' area to a buffer labelled either \textbfit{BETWEEN} or \textbfit{INTER\_CASE}\clfootnote{BetweenAndInterCaseNote}{blue}{We will use the term \textbfit{BETWEEN} for the purposes of this document, to not become too verbose\dots}, appending the data inside the previous macro. The pre-compiler will then append the ``then'' clause with the same \textbfit{MACRO}.
 
     \bigskip
         The final if clause for the \textbfit{MACRO\_NAME} case is:
@@ -193,7 +197,7 @@
         This will then get added by the pre-compiler to the \textbfit{FINAL} buffer of the pre-compiled post-sorted ``master-statement'' that will reflect the logic.
 
     \bigskip
-        For \textbfit{NON\_MACRO} cases the pre-compiler will only get the initial if case assigning it to a \textbfit{NON\_MACRO} buffer \clfootnote{NMacroAMacroBufferReuseNote}{red}{this one can be reused between all \textbfit{NON\_MACRO} cases, as with \textbfit{MACRO}}, appending the \textbfit{BETWEEN} code to it then adding that \textbfit{NON\_MACRO} buffer to the \textbfit{FINAL} buffer.
+        For \textbfit{NON\_MACRO} cases the pre-compiler will only get the initial if case assigning it to a \textbfit{NON\_MACRO} buffer\clfootnote{NMacroAMacroBufferReuseNote}{red}{this one can be reused between all \textbfit{NON\_MACRO} cases, as with \textbfit{MACRO}}, appending the \textbfit{BETWEEN} code to it then adding that \textbfit{NON\_MACRO} buffer to the \textbfit{FINAL} buffer.
         
     \bigskip
         The final if clause for the \textbfit{NON\_MACRO} case is:
@@ -303,7 +307,7 @@
         }
     \end{lstlisting}
     
-        The benefit of this is that to the developer the top option only has the middle code written once, and without the need of any functions which could offload the functionality \clfootnote{HelperFuncNote}{blue}{Although helper functions in the case where they are truly non-fundamental \& ``off-loadable'' are fine}. If that ``\textbfit{BETWEEN}'' area is fundamental to the codebase this can cause issues in overly dispersing the code across too many functions; arguably causing an OOP equivalent to the problem stated above\dots
+        The benefit of this is that to the developer the top option only has the middle code written once, and without the need of any functions which could offload the functionality\clfootnote{HelperFuncNote}{blue}{Although helper functions in the case where they are truly non-fundamental \& ``off-loadable'' are fine}. If that ``\textbfit{BETWEEN}'' area is fundamental to the codebase this can cause issues in overly dispersing the code across too many functions; arguably causing an OOP equivalent to the problem stated above\dots
 
     \newpage
     \section{Sub-Functioning [DEPRECIATED]}
@@ -311,10 +315,10 @@
         *** NOTE : This section had been written prior to learning about lambda functions, and looking at it now is essentially the same thing. For the sake of consistency, and possibly if this turns out to not be drop in replaceable with a similar lambda based Implementation it will remain\dots ***
 
     \bigskip
-        An alternative to the listed above would be to define ``code snippet'' style functions before a branch occurs and have that inserted as you would a helper function. The only meaningful difference is that they are private to the parent function, defined similar to a case definition, and will always be destroyed upon exiting the scope \clfootnote{SFunctionDestructionNote}{red}{This includes forbidding that function from being passed out of scope, this can be justified due to that use-case necessitating the creation of a public function already defined of scope NOT a sub-function within THIS scope\dots}
+        An alternative to the listed above would be to define ``code snippet'' style functions before a branch occurs and have that inserted as you would a helper function. The only meaningful difference is that they are private to the parent function, defined similar to a case definition, and will always be destroyed upon exiting the scope\clfootnote{SFunctionDestructionNote}{red}{This includes forbidding that function from being passed out of scope, this can be justified due to that use-case necessitating the creation of a public function already defined of scope NOT a sub-function within THIS scope\dots}
 
     \bigskip
-        A demonstration (using the if case from above), through sub-functioning is as follows \clfootnote{SFunctionCompilerNote}{blue}{interestingly enough this ``should'' compile exactly like the above example with the sub-function acting as an alias for the compiler to swap the logic with, the exception being that shared then branches will ALSO need sub-functions that can be input into those localities, which removes the nesting seen in the above pre-compilation solution}:
+        A demonstration (using the if case from above), through sub-functioning is as follows\clfootnote{SFunctionCompilerNote}{blue}{interestingly enough this ``should'' compile exactly like the above example with the sub-function acting as an alias for the compiler to swap the logic with, the exception being that shared then branches will ALSO need sub-functions that can be input into those localities, which removes the nesting seen in the above pre-compilation solution}:
     
     \begin{lstlisting}
             

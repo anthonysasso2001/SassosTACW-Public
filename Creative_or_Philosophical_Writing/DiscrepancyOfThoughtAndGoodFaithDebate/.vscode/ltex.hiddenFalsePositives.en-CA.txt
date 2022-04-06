@@ -1,0 +1,2 @@
+{"rule":"UPPERCASE_SENTENCE_START","sentence":"^\\Qsecnumdepth 0 Discrepency of Thought and Good Faith Debate By: Anthony Sasso\\E$"}
+{"rule":"UPPERCASE_SENTENCE_START","sentence":"^\\Qsecnumdepth 0 Discrepancies of Thought and Good Faith Debate By: Anthony Sasso\\E$"}
