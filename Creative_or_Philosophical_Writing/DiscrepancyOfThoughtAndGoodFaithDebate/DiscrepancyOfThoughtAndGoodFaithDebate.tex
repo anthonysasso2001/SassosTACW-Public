@@ -2,7 +2,8 @@
 
 %   included packages
 \usepackage[a4paper,margin = 14mm]{geometry} %0.5 inch margins a4 paper
-\usepackage{amsmath}
+\usepackage{empheq}
+\usepackage{tikz}
 \usepackage{newpxtext,newpxmath}
 \usepackage{microtype}
 \usepackage{titling}
@@ -11,12 +12,12 @@
 
 \usepackage{hyperref}
 \hypersetup{
-    linktoc     =   all,
-    colorlinks,
-    citecolor   =   black,
-    filecolor   =   black,
-    linkcolor   =   black,
-    urlcolor    =   blue
+	linktoc     =   all,
+	colorlinks,
+	citecolor   =   black,
+	filecolor   =   black,
+	linkcolor   =   black,
+	urlcolor    =   blue
 }
 
 %   Setting up the code example
@@ -43,47 +44,74 @@
 \AtBeginDocument{\colorlet{defaultcolor}{.}}
 
 \begin{document}
-    
-    \maketitle
 
-    \begin{versionhistory}
-        \vhEntry    {0.5}   {22/04/06}      {Anthony Sasso} {created}
-    \end{versionhistory}
+\maketitle
 
-    \tableofcontents
+{NOTE: This is a very early version and should not be considered representative of the final document.}
 
-    \newpage
-    \section{Introduction / Concept}
-       This mainly came about from fundamentally disagreeing with the concept of debate as it exists culturally. In addition to modern debate's effect on how people consider beliefs, compare opinions, and does not make accounts for unknown fundamentally disparate occurrences (whether linguistic or experiential).
+\begin{versionhistory}
+	\vhEntry	{0.5}	{22/04/06}	{Anthony Sasso}	{created}
+	\vhEntry	{0.5}	{22/07/01}	{Anthony Sasso}	{fixed some spelling, added critique to set theory and second section}
+	\vhEntry	{0.6}	{22/11/28}	{Anthony Sasso}	{added warning, as I am very skeptical if this is anywhere near what the completed version may look like}
+\end{versionhistory}
 
-    \bigskip
-        The order of this document will be thus:
+\tableofcontents
 
-    \begin{enumerate}
-        \item Outlining of my opinions of the contrast of human knowledge using the framing of set theory, and a potential origin of disagreement as a result.
+\newpage
+\section{Introduction / Concept}
+This mainly came about from fundamentally disagreeing with the concept of debate as it exists culturally. In addition to modern debate's effect on how people consider beliefs, compare opinions, and does not make accounts for unknown fundamentally disparate occurrences (whether linguistic or experiential).
 
-        \item How this can create unequal debate formats that necessarily cannot allow for meaningful understanding.
-        
-        \item A possible debate format structure that could reduce a few of the noticed effects, and potential negatives from it.
-        
-        \item Conclusion and further considerations.
-    \end{enumerate}
-    
-    \section{Human knowledge through set theory}
-        To begin, we will begin with some axioms required for this document to be read directly:
-    
-        \begin{enumerate}
-        \item Two humans cannot by their nature understand to a fundamental level another person's lived experiences, opinions, or the fragment of the origin of their thought, irrespective of their similarities.
-        
-        \item When required humans cannot understand the atomic origins of their feelings, philosophies, and beliefs; but that this does not demean or discount the meaningfulness of anecdotal, lived beliefs.
-        
-        \item If exposed to an unknown, or unknowable experience humans must respond, and this will not allow or create said understanding. (this being the supposition specific occurrences are by their nature unknowable to non-involved members).
-        
-        \item Discrepancies in understanding create conflict, and this conflict can never be removed through competitions of meaning.
-        
-    \end{enumerate}
+\bigskip
+The order of this document will be thus:
 
-    \bigskip
-        
+\begin{enumerate}
+	\item Outlining of my opinions of the contrast of human knowledge using the framing of set theory, and a potential origin of disagreement as a result.
+
+	\item How this can create unequal debate formats that necessarily cannot allow for meaningful understanding.
+
+	\item A possible debate format structure that could reduce a few of the noticed effects, and potential negatives from it.
+
+	\item Conclusion and further considerations.
+\end{enumerate}
+
+\section{Human knowledge through set theory}
+To begin, we will set some axioms required for this document to be read directly:
+
+\begin{enumerate}
+	\item Two humans cannot by their nature understand to a fundamental level another person's lived experiences, opinions, or the fragment of the origin of their thought, irrespective of their similarities.
+
+	\item When required humans cannot understand the atomic origins of their feelings, philosophies, and beliefs; but that this does not demean or discount the meaningfulness of anecdotal, lived beliefs.
+
+	\item If exposed to an unknown, or unknowable experience humans reject or simplify the situation to the point of conceptualization, and this will not allow or create said understanding. This also creates the supposition that specific occurrences are by their nature unknowable to non-involved members unless thorough empathetic understanding can be done outside the terms of the non-involved members.
+
+	\item Discrepancies in understanding create conflict, and this conflict can never be removed through competitions of meaning.
+
+\end{enumerate}
+
+\bigskip
+The simplest way of describing these phenomena would be to use set theory as a basis for visualization. We will say two individuals exist, each with a superset of their understanding (denoted as X for person one, and Y for person two). These supersets are then broken up into discrete subsets of their different aspects. The mathematic example is as such\clfootnote{setNote}{blue}{Swap X for Y in the case of person Y\dots}:
+
+\begin{empheq}[left=\mathbb{X}\supset\empheqlbrace]{align*}
+	Xe \in \mathbb{X} && : \text {let Xp be the lived experiential understanding of person X} \\
+	Xa \in \mathbb{X} && : \text {let Xa be the understood academic knowledge of person X} \\
+	Xp \in \mathbb{X} && : \text {let Xe be the understood subjective beliefs of person X}
+\end{empheq}
+
+\bigskip
+In general, I would say debate in popular methods is only in the case where $\mathbb{X} \cap \mathbb{Y}$. In addition, any case where a statement in a debate is the equivalent of $\mathbb{X} \cup \mathbb{Y}$ are discounted.
+
+\newpage
+\section{Critique of set theory framing}
+The main critiques I can assume would be arguments based on Theological, Darwinian, and anti-intellectual bases.
+
+\subsection{Theological Argument}
+While accepting this is largely based off subjective understandings of more Westernized understandings about religion, I do believe most theological understandings for debate argue for the adoption of consensus as the goal for conversation over any direct "winners''. This would stand against the previously states set theory not so much in goal but approach with the "set theory approach'' requiring humans not be able to completely understand of appreciate each other's beliefs. 
+
+This could prove productive as this leaves the possibility open for a comprehensive understanding given time, motive, and ability of discussion. It may also prove limiting due to human limitations of language, and physical understandings (this is largely the inspiration of the first two axioms).
+
+\subsection{Darwinian}
+If we take the justifications for modern debate at face value, then opinions are essentially arguable, discrete, objective concepts. This then means they can exist with a determined comparative value to other declared opinions. Often this is used to then create winners and losers in debates that overvalue the pure grammatical and pedantic points from any subjective political, religious, or ideological means. This then arguably can also lead to misconstruing those points as logical points (often to the point of fallacy by people of allied beliefs).
+
+\section{Effect of human knowledge on modern Aristotelian style debate}
 
 \end{document}

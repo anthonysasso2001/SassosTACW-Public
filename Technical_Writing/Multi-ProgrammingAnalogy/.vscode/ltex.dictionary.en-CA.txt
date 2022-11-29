@@ -1,3 +1,2 @@
-Sasso
 mutex
 Mutexes
