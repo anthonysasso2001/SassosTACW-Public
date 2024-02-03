@@ -1,6 +1,0 @@
-{"rule":"MORFOLOGIK_RULE_EN_CA","sentence":"^\\QXe X : let Xp be the lived experiential understanding of person X Xa X : let Xa be the understood academic knowledge of person X Xp X : let Xe be the understood subjective beliefs of person X In general I would say debate in popular methods is only in the case where \\E(?:Dummy|Ina|Jimmy-)[0-9]+\\Q.\\E$"}
-{"rule":"MORFOLOGIK_RULE_EN_CA","sentence":"^\\QThe mathematic example is as suchsetNote blue Swap X for Y in the case of person Y…:\\E$"}
-{"rule":"UPPERCASE_SENTENCE_START","sentence":"^\\Qsecnumdepth 0 Discrepancies of Thought and Good Faith Debate By: Anthony Sasso\\E$"}
-{"rule":"MORFOLOGIK_RULE_EN_CA","sentence":"^\\QXe X : let Xp be the lived experiential understanding of person X Xa X : let Xa be the understood academic knowledge of person X Xp X : let Xe be the understood subjective beliefs of person X\\E$"}
-{"rule":"SENTENCE_FRAGMENT","sentence":"^\\QAlthough This is largely based off subjective understanding.\\E$"}
-{"rule":"EN_UNPAIRED_BRACKETS","sentence":"^\\QThis would stand against the previously states set theory not so much in goal but approach with the \"set theory approach” requiring humans not be able to completely understand of appreciate each other's beliefs.\\E$"}
